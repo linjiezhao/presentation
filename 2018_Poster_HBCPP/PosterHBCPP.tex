@@ -1,0 +1,282 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% a0poster Portrait Poster
+% LaTeX Template
+% Version 1.0 (22/06/13)
+%
+% The a0poster class was created by:
+% Gerlinde Kettl and Matthias Weiser (tex@kettl.de)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a0,portrait]{a0poster}
+
+\usepackage{multicol} % This is so we can have multiple columns of text side-by-side
+\columnsep=100pt % This is the amount of white space between the columns in the poster
+\columnseprule=3pt % This is the thickness of the black line between the columns in the poster
+
+\usepackage[svgnames]{xcolor} % Specify colors by their 'svgnames', for a full list of all colors available see here: http://www.latextemplates.com/svgnames-colors
+
+\usepackage{times} % Use the times font
+%\usepackage{palatino} % Uncomment to use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\graphicspath{{figures/}} % Location of the graphics files
+\usepackage{booktabs} % Top and bottom rules for table
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+\usepackage{amsfonts, amsmath, amsthm, amssymb} % For math fonts, symbols and environments
+\usepackage{wrapfig} % Allows wrapping text around tables and figures
+\usepackage{color} %设置背景颜色宏包
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{cite}
+
+%\definecolor{myback}{RGB}{204,232,207}%定义背景颜色
+%\pagecolor{myback}%设置背景颜色
+
+\newtheorem*{theorem}{Theorem}
+
+
+\begin{document}
+
+
+
+%----------------------------------------------------------------------------------------
+%	POSTER HEADER
+%----------------------------------------------------------------------------------------
+
+% The header is divided into two boxes:
+% The first is 80% wide and houses the title, subtitle, names, university/organization and contact information
+% The second is 20% wide and houses a logo for your university/organization or a photo of you
+% The widths of these boxes can be easily edited to accommodate your content as you see fit
+
+\begin{minipage}[b]{0.8\linewidth}
+\Huge \color{NavyBlue} \textbf{Hydrodynamics of the Binary Contact Path Process} \color{Black}\\ % Title
+\begin{center}
+\huge {Xiaofeng Xue \footnote{\large {\textbf{E-mail}: xfxue@bjtu.edu.cn \textbf{Address}: School of Science, Beijing Jiaotong University, Beijing 100044, China.}} and {\bf Linjie Zhao} \footnote{\large {\textbf{E-mail}: zhaolinjie@pku.edu.cn \textbf{Address}: School of Mathematical Sciences, Peking University, Beijing 100871, China.}}}\\[0.5cm] % Author(s)
+\end{center}
+\end{minipage}
+%
+\begin{minipage}[b]{0.2\linewidth}
+\begin{center}
+\includegraphics[width=15cm]{zhao.jpg}\\
+\end{center}
+\end{minipage}
+
+\vspace{1cm} % A bit of extra whitespace between the header and poster content
+
+%----------------------------------------------------------------------------------------
+
+\begin{multicols}{2} % This is how many columns your poster will be broken into, a portrait poster is generally split into 2 columns
+
+\color{DarkSlateGray} % DarkSlateGray color for the rest of the content
+
+
+
+\section*{Contact Process}
+
+\begin{itemize}
+  \item Introduced by Harris \cite{Har1974} to describe the spread of a  disease on $\mathbb{Z}^d$.
+  \item A popular model in the area of interacting particle systems (see Liggett's two monographs \cite{Lig1985,liggett99}).
+  \item Appeared independently in the high-energy physics literature, and is equivalent to the reggeon spin model.
+  \item Simple but exhibits a phase transition.
+\end{itemize}
+
+
+\vskip 0.2cm
+
+Regard each $x \in \mathbb{Z}^d$ as an individual. The state $\eta (x)$ of $x$ takes value in $\{0,1\}$. The individual $x$ is healthy if $\eta(x)=0$, while is infected if $\eta(x) = 1$.  The dynamics is as follows:
+\begin{enumerate}
+\item Each infected individual is recovered at rate $1$, i.e., $1 \rightarrow 0$ at rate $1$.
+\item An individual $x$ is infected by an infected neighbor $y$ at rate $\lambda$, i.e., $0 \rightarrow 1$ at rate $\lambda \sum_{y \sim x} \eta (y)$.
+\end{enumerate}
+
+\vskip 0.2cm
+
+{\bf \color{SaddleBrown} Critical Value.} It is easy to see that the probability that the disease survives is increasing as $\lambda$ increases. Therefore, there exists a critical value $\lambda_c$ such that
+\begin{equation*}
+  \text{The disease}
+  \begin{cases}
+    \text{is extinct with probability one}, & \mbox{if } \lambda < \lambda_c, \\
+    \text{survives with positive probability}, & \mbox{if} \lambda > \lambda_c.
+  \end{cases}
+\end{equation*}
+
+
+\section*{Binary Contact Path Process}
+
+On top of the contact process, we also consider the {\it seriousness} of the disease. The state $\eta (x)$ of $x$ takes value in $[0,\infty)$. The individual $x$ is healthy if $\eta(x)=0$, while is infected if $\eta(x)>0$ and the value of $\eta(x)$ is the seriousness of the disease on $x$. The dynamics is as follows:
+\begin{enumerate}[(I)]
+\item Each infected individual is recovered at rate $1$.
+\item An individual $x$ is infected by a given neighbor $y$ at rate $\lambda$. When the infection occurs, the seriousness of the disease on $x$ is added  with that of $y$.
+\item  When there is no infection occurs for $x$ during some time interval, then $\eta_t (x)$ evolves according to the deterministic ODE
+    $$
+    \frac{d}{dt}\eta_t(x)=(1-2\lambda d)\eta_t(x).
+    $$
+\end{enumerate}
+
+\vskip 0.2cm
+
+\begin{itemize}
+  \item Introduced by Griffeath \cite{Gri1983} as  an auxiliary model to study the critical value of the contact process: If $d \geq 3$, then
+      \begin{equation*}
+        \lambda_c \leq \frac{1}{2d(2\gamma_d-1)},
+      \end{equation*}
+  where $\gamma_d$ is the probability that the simple random walk on $\mathbb{Z}^d$ starting at $O$ never return to $O$ again.
+  \item Let
+  \[
+\xi_t(x)=
+\begin{cases}
+1 &\text{~if~}\eta_t(x)>0,\\
+0 &\text{~if~}\eta_t(x)=0,
+\end{cases}
+\]
+for each $x\in \mathbb{Z}^d$, then $\{ \xi_t\}$ is a version of the contact process.
+\end{itemize}
+
+\section*{Hydrodynamics}
+
+The theory says that the microscopic density field of the concerned model, after properly space time scaling, is dominated macroscopically  be some PDE ({\it hydrodynamic equation}). We refer the reader to \cite{kipnis+landim99}.
+
+\vskip 0.2cm
+
+For each $N \geq 1$, let $\{\eta^N_t\}$ be the binary contact path process with {\bf \color{SaddleBrown} time speeded up by $N^2$}. We are concerned about the random empirical measure $\pi^N_t$ of the process defined by
+\[
+\pi^N_t := \frac{1}{N^d}\sum_{x\in \mathbb{Z}^d}\eta_t^N(x)\delta_{\frac{x}{N}}(du).
+\]
+
+\vskip 0.2cm
+
+{\color{SaddleBrown}
+\begin{center}
+\begin{tabular}[b]{|c|c|c|}
+\hline
+      & Macroscopic & Microscopic          \\ \hline
+Time  & $t$           & $t N^2$ \\ \hline
+Space & $x / N$           & $x$                      \\ \hline
+Space & $\mathbb{R}^d$           & $\mathbb{Z}^d$                      \\ \hline
+\end{tabular}
+\end{center}
+}
+
+
+{
+
+
+
+\section*{Main Result}
+
+We proved the law of large numbers for the empirical measure $\pi^N_t$. The hydrodynamic equation turns out to be the heat equation.
+
+\color{SaddleBrown}
+
+\begin{theorem}
+~~Let $\rho_0: \mathbb{R}^d \rightarrow [0,\infty)$ be bounded and integrable. Initially, $\eta^N_0 (x) = \rho_0 (x / N)$. Suppose $d \geq 3$ and
+\[
+\lambda>\frac{1}{2d(2\gamma_d-1)},
+\]
+then for all $t \geq 0$, as $N \rightarrow \infty$,
+\begin{equation}\label{}
+  \pi^N_t (d u) \rightarrow \rho (t, u) du~~\text{in probability,}
+\end{equation}
+where $\rho (t,u)$ is the unique solution of the heat equation
+\begin{equation}\label{eq:intro1}
+  \begin{cases}
+    \partial_t \rho (t,u) = \lambda \Delta \rho (t,u), \\
+    \rho (0,u) = \rho_0 (u).
+  \end{cases}
+\end{equation}
+\end{theorem}
+
+
+}
+
+\section*{Remarks}
+
+\begin{itemize}
+  \item The favorite models in hydrodynamic theory are generally mass conserved, such as exclusion processes and zero range processes. However, the binary contact path process lacks this property.
+  \item We are able to calculate the hydrodynamics of the binary contact path process due to the following two facts:
+      \begin{itemize}
+        \item { \color{SaddleBrown} On average, the total mass of the system is conserved, see Equation \eqref{eq2}.} This fact is due to the dynamics (III) of the process.
+        \item The binary contact path process belongs to { \color{SaddleBrown} linear systems}, which allows explicit calculations.
+      \end{itemize}
+  \item  A central limit theorem for the density of particles in the context of binary context path processes was proved in \cite{NagahataYoshida09}.
+  \item It remains open to study the hydrodynamics of the process for small $\lambda$ or in lower dimensions $d \leq 2$.
+\end{itemize}
+
+\section*{Sketch of the Proof}
+
+The proof is divided into four steps:
+\begin{enumerate}[Step 1.]
+  \item Let $Q^N$ be the law of $\{ \pi^N_t, 0 \leq t \leq T\}$. Then $\{Q^N, N \geq 1\}$ is tight. { ( \color{SaddleBrown} Prohorov's Theorem and Aldous' Criterion.)}
+  \item Let $Q^*$ be any limit of $Q^N$. Then $Q^*$ is concentrated on absolutely continuous trajectories.
+  \item Show that the density of the trajectory is the solution of the heat equation \eqref{eq:intro1} with probability one with respect to $Q^*$. { ( \color{SaddleBrown} Martingale Approach.)}
+  \item The result follows from the uniqueness of the solution of the heat equation.
+\end{enumerate}
+
+\vskip 0.3cm
+
+The {\bf \color{SaddleBrown} difficulty} is to prove the {\bf \color{SaddleBrown} absolute continuity (Step 2)} since the value at each site is not bounded. We overcome this difficulty by proving the convergence to zero of the variance: given $G\in C_c^2(\mathbb{R}^d)$ and $t>0$,
+\begin{equation}\label{eq1}
+  \lim_{N\rightarrow+\infty}{\rm Var}\big( \langle \pi_t^N,G \rangle \big)=0.
+\end{equation}
+This implies that
+\begin{equation*}
+  \langle \pi_t,G \rangle = \mathbf{E}_{Q^*} \left[ \langle \pi_t,G \rangle \right] ~~~\text{$Q^*$-a.s.}
+\end{equation*}
+Then (B) follows from the following fact:
+\begin{equation}\label{eq2}
+   \mathbb{E} \left[ \langle \pi_t^N,G \rangle \right] = \frac{1}{N^d} \sum_{x \in \mathbb{Z}^d} \rho_0 \left(\frac{x}{N}\right) G \left(\frac{x}{N}\right),
+\end{equation}
+
+\vskip 0.3cm
+
+The proof of Equation \eqref{eq1} is based on {\it direct calculation}. We first write ${\rm Var}\big( \langle \pi_t^N,G \rangle \big)$ as
+$$
+\frac{1}{N^{2d}}\sum_{x\in \mathbb{Z}^d} \sum_{y\in  \mathbb{Z}^d} G\left(\frac{x}{N}\right) G\left(\frac{y}{N}\right) \Big(\mathbb{E}\big(\eta_t^N(x)\eta_t^N(y)\big)- \mathbb{E}\big(\eta_t^N(x)\big)\mathbb{E}\big(\eta_t^N(y)\big)\Big).
+$$
+By  Hille-Yosida Theorem and infinitesimal generator calculations,
+\[
+\mathbb{E}\big(\eta_t(x)\big)=\sum_{y\in \mathbb{Z}^d}p_{t}(x,y)\mathbb{E}\big(\eta_0(y)\big),
+\]
+where $\{ p_t (x,y) \}$ is the transition probability of the continuous time simple random walk on $\mathbb{Z}^d$ with rate $2 d \lambda$, and there exists a $(\mathbb{Z}^d\times \mathbb{Z}^d)\times(\mathbb{Z}^d\times \mathbb{Z}^d)$ matrix $M_\lambda$ such that
+\[
+\mathbb{E}\Big(\eta_t(x)\eta_t(y)\Big)=\sum_{u\in \mathbb{Z}^d}\sum_{v\in \mathbb{Z}^d}e^{t M_\lambda}\Big((x,y),(u,v)\Big)\mathbb{E}\Big[\eta_0(u)\eta_0(v)\Big].
+\]
+Finally, Equation \eqref{eq1} follows from the following result: For any $\lambda>\frac{1}{2d(2\gamma_d-1)}$, there exists $h_\lambda>0$ such that
+\[
+\sum_{u\in \mathbb{Z}^d}\sum_{v\in \mathbb{Z}^d}e^{tM_\lambda}\big((x,y),(u,v)\big)\leq \frac{k(y-x)+h_\lambda}{h_\lambda},
+\]
+where $k (x)$ is the probability that the simple random walk hits site $x$ finally when starting from the origin.
+
+\begin{thebibliography}{99}
+\bibitem{DeMasiPresutti91} De Masi, A. and Presutti, E. (1991). Mathematical methods for hydrodynamic limits. {\it Lecture Notes in Mathematics}.
+\bibitem{Deimling1977}Deimling, K. (1977). \emph{Ordinary Differential Equations in Banach Spaces.} Springer, Berlin.
+\bibitem{Dobrushin&Siegmund-Schultze82} Dobrushin Moscow, R. O. and Siegmund-Schultze, R. (1982). The hydrodynamic limit for systems of particles with independent evolution. {\it Mathematische Nachrichten}, {\bf 105}, 199-224.
+\bibitem{GalvesKipnisMarchioroPresutti81} Galves, A., Kipnis, C., Marchioro, C. and Presutti, E. (1981). Nonequilibrium measures which exhibit a temperature gradient: study of a model. {\it Communications in Mathematical Physics}, {\bf 81}, 127-147.
+\bibitem{Gri1983}Griffeath, D. (1983). The binary contact path process. \emph{The Annals
+of Probability} \textbf{11}, 692-705.
+\bibitem{Har1974}Harris, T. E. (1974). Contact interactions on a lattice. \emph{The Annals of Probability} \textbf{2}, 969-988.
+\bibitem{kipnis+landim99} Kipnis, C. and Landim, C. (1999) {\it Scaling limits of interacting particle systems.} Springer-Verlag, Berlin.
+\bibitem{Lig1985}Liggett, T. M. (1985). {\it Interacting Particle Systems.} Springer, New York.
+\bibitem{liggett99} Liggett, T. M. (2013). {\it Stochastic interacting systems: contact, voter and exclusion processes} (Vol. 324). springer science $\&$ Business Media.
+\bibitem{NagahataYoshida09} Nagahata, Y. and Yoshida, N. (2009). Central limit theorem for a class of linear systems. {\it Electronic Journal of Probability}, {\bf 14}, 960-977.
+\bibitem{PresuttiSpohn83} Presutti, E. and Spohn, H. (1983). Hydrodynamics of the voter model. {\it The Annals of Probability}, 867-875.
+\bibitem{Rost81} Rost, H. (1981) Nonequilibrium behaviour of a many particle process: density profile and local equilibria. {\it Z. Wahrsch. Verw. Gebiete}, {\bf 58}, 41-53.
+\end{thebibliography}
+
+
+\end{multicols}
+
+
+\end{document} 
